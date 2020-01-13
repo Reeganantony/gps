@@ -1,0 +1,50 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 6, 2020, 11:46:10 AM
+    Author     : Infant Jacob J
+*/
+
+body{
+    background: url(/img/bus1.jpg)no-repeat center fixed;
+    background-size: cover;
+}
+.main-section{
+    margin: 0 auto;
+    margin-top: 130px;
+    padding: 0;
+
+}
+.modal-content{
+    background-color: #099863;
+    /*    opacity: .8;*/
+    padding: 0 18px;
+
+}
+.user-img img{
+    height: 120px;
+    width: 120px;
+}
+.user-img{
+    margin-top: -60px;
+}
+.form-group{
+    margin-bottom: 25px;
+    margin-top: 40px;
+}
+.form-group input{
+    height: 42px;
+    border-radius: 5px;
+    border-color: transparent;
+    border: none transparent;
+    outline: none;
+    font-size: 16px;
+}
+.form-group button{
+    width: 160px;
+    height: 50px;
+    margin-bottom: 50px;
+}

@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\master_students;
 use App\master_standards;
 use App\master_sections;
+use App\master_address;
+use App\master_area;
+use App\master_city;
+use App\master_locality;
+use App\master_pincode;
+use App\master_state;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -16,23 +22,17 @@ class MasterStudentsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-      if ($request->ajax()) {
+
+        
+        if ($request->ajax()) {
             $data = master_students::latest()->get();
             return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-   
-                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
-   
-                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm delete">Delete</a>';
-    
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
+                    
                     ->make(true);
         }
-      
-        return view('home');
+          
+
+        return view('layout',$data);
     }
 
     /**
@@ -45,8 +45,12 @@ class MasterStudentsController extends Controller {
         $stud_class = master_standards::all();
         $stud_sec = master_sections::all();
         $stud_data = master_students::all();
-
-        return view('student.create',compact('stud_sec','stud_data','stud_class'));
+        $stud_area = master_area::all();
+        $stud_locality = master_locality::all();
+        $stud_city = master_city::all();
+        $stud_state = master_state::all();
+        $stud_pincode = master_pincode::all();
+        return view('student.create', compact('stud_sec', 'stud_data', 'stud_class', 'stud_area', 'stud_locality', 'stud_city', 'stud_state', 'stud_pincode'));
     }
 
     /**
@@ -56,24 +60,14 @@ class MasterStudentsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        
+
 //        request()->validate([
-////            id'=>['required','min:3','max:255'],
-//            'id' => 'required',
+//
 //            'first_name' => 'required',
 //            'last_name' => 'required',
 //            'gender' => 'required'
 //        ]);
-
-//        $data = $request->all();
-//        $check = master_students::insert($data);
-//        $arr = array('msg' => 'Something goes to wrong. Please try again lator', 'status' => false);
-//        if($check){ 
-//        $arr = array('msg' => 'Successfully submit form using ajax', 'status' => true);
-//        }
-//        return Response()->json($arr);
         $stud = new master_students();
-        $stud->id = request('id');
         $stud->first_name = request('first_name');
         $stud->last_name = request('last_name');
         $stud->gender = request('gender');
@@ -81,13 +75,18 @@ class MasterStudentsController extends Controller {
         $stud->sec_id = request('section');
         $stud->pho_no = request('pho_no');
         $stud->save();
-        $arr = array('msg' => 'Something goes to wrong. Please try again lator', 'status' => false);
-        if($stud){ 
-        $arr = array('msg' => 'Successfully submit form using ajax', 'status' => true);
-        }
-        return Response()->json($arr);
-//         
-//        return redirect(route('student.create'));
+
+        return response()->json(['success' => 'Student saved successfully.', 'id' => $stud->id]
+        );
+        
+//        master_students::updateOrCreate(
+//                ['first_name' => request()->first_name], 
+//                ['last_name' => request()->last_name],
+//                ['gender' => request()->gender], 
+//                ['class_id' => request()->class_id],
+//                ['sec_id' => request()->sec_id], 
+//                ['pho_no' => request()->pho_no]
+//                );
     }
 
     /**
@@ -106,8 +105,9 @@ class MasterStudentsController extends Controller {
      * @param  \App\master_students  $master_students
      * @return \Illuminate\Http\Response
      */
-    public function edit(master_students $master_students) {
-        //
+    public function edit($id) {
+        $stud = master_students::find($id);
+        return response()->json($stud);
     }
 
     /**
@@ -117,7 +117,7 @@ class MasterStudentsController extends Controller {
      * @param  \App\master_students  $master_students
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, master_students $master_students) {
+    public function update(Request $request,  $master_students) {
         //
     }
 
@@ -128,8 +128,11 @@ class MasterStudentsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        demo::find($id)->delete();
-     
-        return response()->json(['success'=>'Product deleted successfully.']);    }
+
+        $stud = master_students::find($id);
+        $stud->delete();
+
+        return response()->json(['success' => 'Product deleted successfully.']);
+    }
 
 }

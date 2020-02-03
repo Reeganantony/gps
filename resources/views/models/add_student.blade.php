@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="form-group form_elements">
                                         <label for="exampleFormControlInput1" class="lbl col-4">Building Name</label>
-                                        <input type="text" class="form-control col-6" id="build_name" name="building_name">
+                                        <input type="text" class="form-control col-6" id="building_name" name="building_name">
                                         @if($errors->has('building_name'))
                                         <p class="alert alert-danger">{{$errors->first('building_name')}}</p>
                                         @endif
@@ -133,7 +133,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="lbl col-4">Area</label>
-                                        <select class="form-control col-6" name="area" >
+                                        <select class="form-control col-6" name="area" id="area">
                                             <option selected="">Select...</option>
                                             @foreach($stud_area as $stud)
                                             <option value="{{$stud->id}}">{{$stud->area}}</option>
@@ -155,7 +155,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="lbl col-4">Locality</label>
-                                        <select class="form-control col-6" name="locality">
+                                        <select class="form-control col-6" name="locality" id="locality">
                                             <option selected="">Select...</option>
                                             @foreach($stud_locality as $stud)
                                             <option value="{{$stud->id}}">{{$stud->locality}}</option>
@@ -168,7 +168,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="lbl col-4">City</label>
-                                        <select class="form-control col-6" name="city" >
+                                        <select class="form-control col-6" name="city" id="city">
                                             <option selected="">Select...</option>
                                             @foreach($stud_city as $stud)
                                             <option value="{{$stud->id}}">{{$stud->city}}</option>
@@ -181,7 +181,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="lbl col-4">State</label>
-                                        <select class="form-control col-6" name="state" >
+                                        <select class="form-control col-6" name="state" id="state">
                                             <option selected="">Select...</option>
                                             @foreach($stud_state as $stud)
                                             <option value="{{$stud->id}}">{{$stud->state}}</option>
@@ -193,7 +193,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="lbl col-4">Zip/Postel code</label>
-                                        <select class="form-control col-6" name="pin_code" >
+                                        <select class="form-control col-6" name="pin_code" id="pin_code" >
                                             <option selected="">Select...</option>
                                             @foreach($stud_pincode as $stud)
                                             <option value="{{$stud->id}}">{{$stud->pin_code}}</option>

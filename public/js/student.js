@@ -42,11 +42,14 @@ $(function () {
         $.get("/Address" + '/' + stud_id + '/edit', function (data) {
             
             $('#building_no').val(data.building_no);
-//            $('#last_name').val(data.last_name);
-//            $('#gender').val(data.gender);
-//            $('#class_id').val(data.class_id);
-//            $('#sec_id').val(data.sec_id);
-//            $('#pho_no').val(data.pho_no);
+            $('#building_name').val(data.building_name);
+            $('#street').val(data.street);
+            $('#area').val(data.area);
+            $('#road').val(data.road);
+            $('#locality').val(data.locality);
+                        $('#city').val(data.city);
+            $('#state').val(data.state);
+            $('#pin_code').val(data.pin_code);
 
         });
     });

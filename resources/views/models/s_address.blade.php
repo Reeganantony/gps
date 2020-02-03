@@ -1,35 +1,18 @@
-<div class="modal fade bd-example-modal-lg" id="studentModal1"   tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg"  role="document">
-        <div class="modal-content" >
-            <div class="modal-header">
-                <h4 class="modal-title" id="modelHeading"></h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                
-                
-
-                    
-                    
-                    
-                    
-                        <form action="/Address"  method="POST" id="studAddress" name="studAddress" >
+<form action="javascript:void(0)"  method="POST" id="studAddress" name="studAddress" >
                             <input type="hidden" name="stud_id" id="stud_id" value="">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group ">
                                         <label for="exampleFormControlInput1" class="lbl col-4">Building No</label>
-                                        <input type="text" class="form-control col-6" id="build_no" name="building_no">
+                                        <input type="text" class="form-control col-6" id="building_no" name="building_no">
                                         @if($errors->has('building_no'))
                                         <p class="alert alert-danger">{{$errors->first('building_no')}}</p>
                                         @endif
                                     </div>
                                     <div class="form-group form_elements">
                                         <label for="exampleFormControlInput1" class="lbl col-4">Building Name</label>
-                                        <input type="text" class="form-control col-6" id="build_name" name="building_name">
+                                        <input type="text" class="form-control col-6" id="building_name" name="building_name">
                                         @if($errors->has('building_name'))
                                         <p class="alert alert-danger">{{$errors->first('building_name')}}</p>
                                         @endif
@@ -43,7 +26,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="lbl col-4">Area</label>
-                                        <select class="form-control col-6" name="area" >
+                                        <select class="form-control col-6" name="area" id="area">
                                             <option selected="">Select...</option>
                                             @foreach($stud_area as $stud)
                                             <option value="{{$stud->id}}">{{$stud->area}}</option>
@@ -54,6 +37,8 @@
                                         <p class="alert alert-danger">{{$errors->first('area')}}</p>
                                         @endif
                                     </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="lbl col-4">Road</label>
                                         <input type="text" class="form-control col-6" id="road" placeholder="road" name="road">
@@ -63,7 +48,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="lbl col-4">Locality</label>
-                                        <select class="form-control col-6" name="locality">
+                                        <select class="form-control col-6" name="locality" id="locality">
                                             <option selected="">Select...</option>
                                             @foreach($stud_locality as $stud)
                                             <option value="{{$stud->id}}">{{$stud->locality}}</option>
@@ -76,7 +61,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="lbl col-4">City</label>
-                                        <select class="form-control col-6" name="city" >
+                                        <select class="form-control col-6" name="city" id="city">
                                             <option selected="">Select...</option>
                                             @foreach($stud_city as $stud)
                                             <option value="{{$stud->id}}">{{$stud->city}}</option>
@@ -89,7 +74,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="lbl col-4">State</label>
-                                        <select class="form-control col-6" name="state" >
+                                        <select class="form-control col-6" name="state" id="state">
                                             <option selected="">Select...</option>
                                             @foreach($stud_state as $stud)
                                             <option value="{{$stud->id}}">{{$stud->state}}</option>
@@ -101,7 +86,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="lbl col-4">Zip/Postel code</label>
-                                        <select class="form-control col-6" name="pin_code" >
+                                        <select class="form-control col-6" name="pin_code" id="pin_code" >
                                             <option selected="">Select...</option>
                                             @foreach($stud_pincode as $stud)
                                             <option value="{{$stud->id}}">{{$stud->pin_code}}</option>
@@ -116,8 +101,8 @@
                                     </div>
                                 </div>         
                             </div>
-                            <div class="alert alert-success d-none" id="msg_div">
-                                <span id="message"></span>
+                            <div class="alert alert-success d-none" id="msg_div1">
+                                <span id="res-message"></span>
                             </div>
                             <div class="row">
                                 <div class="form-group  btn-submit">
@@ -125,13 +110,3 @@
                                 </div>
                             </div>
                         </form>
-                    
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-

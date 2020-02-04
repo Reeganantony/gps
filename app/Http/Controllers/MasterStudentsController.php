@@ -23,16 +23,16 @@ class MasterStudentsController extends Controller {
      */
     public function index(Request $request) {
 
-        
-        if ($request->ajax()) {
-            $data = master_students::latest()->get();
-            return Datatables::of($data)
-                    
-                    ->make(true);
-        }
-          
 
-        return view('layout',$data);
+//        if ($request->ajax()) {
+//            $data = master_students::latest()->get();
+//            return Datatables::of($data)
+//                    
+//                    ->make(true);
+//        }
+//          
+//
+//        return view('layout',$data);
     }
 
     /**
@@ -78,15 +78,17 @@ class MasterStudentsController extends Controller {
 
         return response()->json(['success' => 'Student saved successfully.', 'id' => $stud->id]
         );
-        
-//        master_students::updateOrCreate(
-//                ['first_name' => request()->first_name], 
-//                ['last_name' => request()->last_name],
-//                ['gender' => request()->gender], 
-//                ['class_id' => request()->class_id],
-//                ['sec_id' => request()->sec_id], 
-//                ['pho_no' => request()->pho_no]
-//                );
+
+//        master_students::updateOrCreate(['id' => $request->stud_id1],
+//                ['first_name' =>  $request->first_name,
+//                    'last_name' =>  $request->last_name,
+//                    'gender' =>  $request->gender,
+//                    'class_id' =>  $request->class_id,
+//                    'sec_id' =>  $request->sec_id,
+//                    'pho_no' =>  $request->pho_no]
+//        );
+//        return response()->json(['success' => 'Student saved successfully.', 'id' => $stud->id]
+//        );
     }
 
     /**
@@ -117,8 +119,18 @@ class MasterStudentsController extends Controller {
      * @param  \App\master_students  $master_students
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,  $master_students) {
-        //
+    public function update(Request $request, $master_students) {
+//        $stud = master_students::find($id);
+//        $stud->first_name = request('first_name');
+//        $stud->last_name = request('last_name');
+//        $stud->gender = request('gender');
+//        $stud->class_id = request('class');
+//        $stud->sec_id = request('section');
+//        $stud->pho_no = request('pho_no');
+//        $stud->save();
+//
+//        return response()->json(['success' => 'Student saved successfully.', 'id' => $stud->id]
+//        );
     }
 
     /**

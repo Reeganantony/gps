@@ -1,3 +1,4 @@
+use App\master_bgroup;
 @extends('layout')
 
 @section('head')
@@ -40,32 +41,53 @@
                                         <th> First Name </th>
                                         <th> Last Name </th>
                                         <th> Gender </th>
-                                        <th> Class </th>
-                                        <th> Section </th>
-                                        <th> Mobile Number</th>
+                                        <th> DOB </th>
+                                        <th> Blood Group </th>
+                                        <th> Mother Tongue</th>
+<!--                                        <th> Religion </th>
+                                        <th> Caste </th>
+                                        <th> Community</th>
+                                        --><th> Address</th>
 
                                         <th style="width: 20" colspan="2">Operations</th>
                                     </tr>
 
                                 </thead>
+
                                 <tbody id="">
+                                   
                                     @foreach($stud_data as $stud_info)
+                                     @foreach($stud_add as $stud)
                                     <tr id="user_id_{{ $stud_info->id }}">
                                         <td>{{ $stud_info->id  }}</td>
                                         <td>{{ $stud_info->first_name }}</td>
                                         <td>{{ $stud_info->last_name }}</td>
                                         <td>{{ $stud_info->gender }}</td>
-                                        <td>{{ $stud_info->class_id }}</td>
-                                        <td>{{ $stud_info->sec_id }}</td>
-                                        <td>{{ $stud_info->pho_no }}</td>
+                                        <td>{{ $stud_info->dob }}</td>
+                                        <td>{{ $stud_info->bgroup_id }}</td>
+                                        <td>{{ $stud_info->mtongue_id }}</td>
+<!--                                        <td>{{ $stud_info->religion_id }}</td>
+                                        <td>{{ $stud_info->caste_id }}</td>
+                                        <td>{{ $stud_info->comm_id }}</td>
+                                        <td>{{ $stud_info->aadar_no }}</td>-->
+                                        <td>{{ $stud->building_no  }}
+                                        {{ $stud->building_name }}
+                                       {{ $stud->street }}
+                                       {{ $stud->area }}
+                                        {{ $stud->road }}
+                                        {{ $stud->locality }}
+                                       {{ $stud->city }}
+                                      {{ $stud->state }}
+                                        {{ $stud->pin_code }}</td>
+                                        
                                         <td colspan="2">
-                                            <a href="javascript:void(0)" id="edit-user" data-id="{{ $stud_info->id }}" class="btn btn-info mr-2 edit-user">Edit</a>
+                                            <a href="javascript:void(0)" id="edit-user" data-id="{{ $stud_info->id }}" class="btn btn-info mr-2 edit-user" >Edit</a>
                                             <a href="javascript:void(0)" id="delete-user" data-id="{{ $stud_info->id }}" class="btn btn-danger delete-user">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @endforeach
                                 </tbody>
-
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -79,6 +101,7 @@
         <!-- /.content -->
     </div>
 </div>
+
 
 @endsection
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMasterSectionsTable extends Migration
+class CreateMasterCastesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateMasterSectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_sections', function (Blueprint $table) {
+        Schema::create('master_castes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('sections');
+            $table->string('caste');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateMasterSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_sections');
+        Schema::dropIfExists('master_castes');
     }
 }

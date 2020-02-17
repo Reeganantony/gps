@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\master_standards;
+use App\master_bgroup;
 use Illuminate\Http\Request;
 
-class MasterStandardsController extends Controller
+class MasterBgroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +22,8 @@ class MasterStandardsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create()
+    {
         //
     }
 
@@ -34,16 +35,21 @@ class MasterStandardsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bgp = new master_bgroup();
+        $bgp->b_group = request('b_group');
+        $bgp->save();
+
+        return response()->json(['success' => 'Blood Group saved successfully.']
+        );
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\master_standards  $master_standards
+     * @param  \App\master_bgroup  $master_bgroup
      * @return \Illuminate\Http\Response
      */
-    public function show(master_standards $master_standards)
+    public function show(master_bgroup $master_bgroup)
     {
         //
     }
@@ -51,10 +57,10 @@ class MasterStandardsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\master_standards  $master_standards
+     * @param  \App\master_bgroup  $master_bgroup
      * @return \Illuminate\Http\Response
      */
-    public function edit(master_standards $master_standards)
+    public function edit(master_bgroup $master_bgroup)
     {
         //
     }
@@ -63,10 +69,10 @@ class MasterStandardsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\master_standards  $master_standards
+     * @param  \App\master_bgroup  $master_bgroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, master_standards $master_standards)
+    public function update(Request $request, master_bgroup $master_bgroup)
     {
         //
     }
@@ -74,10 +80,10 @@ class MasterStandardsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\master_standards  $master_standards
+     * @param  \App\master_bgroup  $master_bgroup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(master_standards $master_standards)
+    public function destroy(master_bgroup $master_bgroup)
     {
         //
     }

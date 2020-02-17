@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\master_students;
-use App\master_standards;
-use App\master_sections;
+use App\master_student;
+use App\master_community;
+use App\master_caste;
+use App\master_bgroup;
+use App\master_mtongue;
+use App\master_religion;
 use App\master_address;
 use App\master_area;
 use App\master_city;
@@ -27,12 +30,11 @@ class MasterStudentsController extends Controller {
 //        if ($request->ajax()) {
 //            $data = master_students::latest()->get();
 //            return Datatables::of($data)
-//                    
-//                    ->make(true);
+//                            ->make(true);
 //        }
-//          
 //
-//        return view('layout',$data);
+//
+        return view('layout');
     }
 
     /**
@@ -42,15 +44,19 @@ class MasterStudentsController extends Controller {
      */
     public function create() {
         //
-        $stud_class = master_standards::all();
-        $stud_sec = master_sections::all();
-        $stud_data = master_students::all();
+        $stud_caste = master_caste::all();
+        $stud_rel = master_religion::all();
+        $stud_mt = master_mtongue::all();
+        $stud_bg = master_bgroup::all();
+        $stud_com = master_community::all();
+        $stud_data = master_student::all();
         $stud_area = master_area::all();
         $stud_locality = master_locality::all();
         $stud_city = master_city::all();
         $stud_state = master_state::all();
         $stud_pincode = master_pincode::all();
-        return view('student.create', compact('stud_sec', 'stud_data', 'stud_class', 'stud_area', 'stud_locality', 'stud_city', 'stud_state', 'stud_pincode'));
+        $stud_add= master_address::all();
+        return view('student.create', compact('stud_add','stud_data', 'stud_caste', 'stud_rel', 'stud_area', 'stud_mt', 'stud_bg', 'stud_com', 'stud_locality', 'stud_city', 'stud_state', 'stud_pincode'));
     }
 
     /**
@@ -66,29 +72,50 @@ class MasterStudentsController extends Controller {
 //            'first_name' => 'required',
 //            'last_name' => 'required',
 //            'gender' => 'required'
-//        ]);
-        $stud = new master_students();
-        $stud->first_name = request('first_name');
-        $stud->last_name = request('last_name');
-        $stud->gender = request('gender');
-        $stud->class_id = request('class');
-        $stud->sec_id = request('section');
-        $stud->pho_no = request('pho_no');
-        $stud->save();
+//        
 
+
+        if ($request->input('button_action') === 'create-student') {
+            $stud = new master_student();
+            $stud->first_name = request('first_name');
+            $stud->last_name = request('last_name');
+            $stud->gender = request('gender');
+            $stud->dob = request('dob');
+            $stud->bgroup_id = request('b_group');
+            $stud->mtongue_id = request('tongue');
+            $stud->religion_id = request('religion');
+            $stud->caste_id = request('caste');
+            $stud->comm_id = request('community');
+            $stud->aadar_no = request('aadhar');
+
+            $stud->save();
+        } else if ($request->input('button_action') === 'edit-student') {
+            $stud = master_student::find($request->input('stud_id'));
+            $stud->first_name = request('first_name');
+            $stud->last_name = request('last_name');
+            $stud->gender = request('gender');
+            $stud->dob = request('dob');
+            $stud->bgroup_id = request('b_group');
+            $stud->mtongue_id = request('tongue');
+            $stud->religion_id = request('religion');
+            $stud->caste_id = request('caste');
+            $stud->comm_id = request('community');
+            $stud->aadar_no = request('aadhar');
+            $stud->save();
+        } else {
+            alert('hello');
+        }
         return response()->json(['success' => 'Student saved successfully.', 'id' => $stud->id]
         );
-
-//        master_students::updateOrCreate(['id' => $request->stud_id1],
-//                ['first_name' =>  $request->first_name,
-//                    'last_name' =>  $request->last_name,
-//                    'gender' =>  $request->gender,
-//                    'class_id' =>  $request->class_id,
-//                    'sec_id' =>  $request->sec_id,
-//                    'pho_no' =>  $request->pho_no]
-//        );
-//        return response()->json(['success' => 'Student saved successfully.', 'id' => $stud->id]
-//        );
+//         master_students::updateOrCreate([                 
+//                     
+//                    'first_name' => $request->get('first_name'),
+//                    'last_name' => $request->get('last_name'),
+//                    'gender' => $request->get('gender'),
+//                    'class_id' => $request->get('class_id'),
+//                    'sec_id' => $request->get('sec_id'),
+//                    'pho_no' => $request->get('pho_no')
+//        ]);
     }
 
     /**
@@ -108,7 +135,7 @@ class MasterStudentsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $stud = master_students::find($id);
+        $stud = master_student::find($id);
         return response()->json($stud);
     }
 
@@ -119,7 +146,7 @@ class MasterStudentsController extends Controller {
      * @param  \App\master_students  $master_students
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $master_students) {
+    public function update($id) {
 //        $stud = master_students::find($id);
 //        $stud->first_name = request('first_name');
 //        $stud->last_name = request('last_name');
@@ -141,7 +168,7 @@ class MasterStudentsController extends Controller {
      */
     public function destroy($id) {
 
-        $stud = master_students::find($id);
+        $stud = master_student::find($id);
         $stud->delete();
 
         return response()->json(['success' => 'Product deleted successfully.']);

@@ -1,85 +1,134 @@
-<div class="alert alert-success d-none" id="msg_div">
-        <span id="message"></span>
-    </div>
+<div id="message"></div>
 <form action="javascript:void(0)"  method="POST" id="studForm" name="studForm" >
-    <input type="hidden" name="stud_id1" id="stud_id1" value="">
+    <input type="hidden" name="stud_id" id="stud_id" value="">
     @csrf
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group" id="form_elements">
-                <label for="exampleFormControlInput1" class="lbl col-4">First Name:</label>
-                <input type="text" class="form-control col-6" id="first_name" name="first_name" autocomplete="off">
-                @if($errors->has('first_name'))
-                <p class="alert alert-danger">{{$errors->first('first_name')}}</p>
-                @endif
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1" class="lbl col-4">Last Name:</label>
-                <input type="text" class="form-control col-6" id="last_name" name="last_name" autocomplete="off">
-                @if($errors->has('last_name'))
-                <p class="alert alert-danger">{{$errors->first('last_name')}}</p>
-                @endif
-            </div>
-            <div class="form-group radio_btn">
-
-                <legend class="col-form-label col-4 pt-0 lbl">Gender</legend>
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" >
-                        <label for="exampleFormControlInput1" class="lbl col-3">Male</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female">
-                        <label for="exampleFormControlInput1" class="lbl col-3">Female</label>
-                    </div>
-                    @if($errors->has('gender'))
-                    <p class="alert alert-danger">{{$errors->first('gender')}}</p>
-                    @endif
+    <div class="form-row">
+        <div class="col-5">
+            <div class="form-group row required">
+                <label for="first_name" class="col-sm-4 col-form-label">First Name</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-sm" id="first_name"  name="first_name" placeholder="First name" value="" autocomplete="off">
                 </div>
+            </div>    
+            <div class="form-group row">
+                <label for="last_name" class="col-sm-4 col-form-label">Last Name</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-sm" id="last_name"  name="last_name" placeholder="Last name" value="" autocomplete="off">
+                </div>
+            </div>    
+            <div class="form-group row required">
+                <label for="gender" class="col-sm-4 col-form-label">Gender</label>
+                <div class="col-sm-6">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gender"  value="M" checked="true"> Male
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gender"  value="F"> Female
+                        </label>
+                    </div>
+                </div>
+            </div>   
 
+
+            <div class="form-group row required">
+                <label for="dob" class="col-sm-4 col-form-label">Date of Birth</label>
+                <div class="col-sm-6">
+                    <input type="date" class="form-control form-control-sm dob datepicker" name="dob" id="dob" placeholder="yyyy-mm-dd" value="" autocomplete="off">
+                </div>
+            </div> 
+            <div class="form-group row">
+                <label for="b_group" class="col-sm-4 col-form-label">Blood Group</label>
+                <div class="col-sm-6">
+                    <select class="form-control form-control-sm" name="b_group" id="b_group">
+                        <option value="" class="text-muted">Select</option>
+                        @foreach($stud_bg as $stud)
+                        <option value="{{$stud->id}}">{{$stud->b_group}}</option>
+                        @endforeach
+                    </select>
+                    <a href="javascript:void(0)"  data-toggle="modal" data-target="#bloodgroupModal" class="small float-right text-info" >Add Blood Group</a>
+                </div>
+            </div> 
+
+
+
+        </div>
+        <div class="col-5">
+            <div class="form-group row required">
+                <label for="m_tongue" class="col-sm-4  col-form-label">Mother Tongue</label>
+                <div class="col-sm-6">
+                    <select class="form-control form-control-sm" name="tongue" id="tongue">
+                        <option value="" class="text-muted">Select</option>
+                        @foreach($stud_mt as $stud)
+                        <option value="{{$stud->id}}">{{$stud->mtongue}}</option>
+                        @endforeach
+                    </select>
+                    <a href="javascript:void(0)"  data-toggle="modal" data-target="#mtongueModal" class="small float-right text-info" >Add Mother Tongue</a>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="exampleFormControlSelect1" class="lbl col-4">Class</label>
-                <!--<a href=""><span>Add Class</span></a>-->
-                <select class="form-control col-6" name="class" id="class_id">
-                    <option selected="">Select...</option>
-                    @foreach($stud_class as $stud)
-                    <option value="{{$stud->id}}">{{$stud->standard}}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('class'))
-                <p class="alert alert-danger">{{$errors->first('class')}}</p>
-                @endif
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect1" class="lbl col-4">Section</label>
-                <select class="form-control col-6" name="section" id="sec_id">
-                    <option selected="">Select...</option>
-                    @foreach($stud_sec as $stud)
-                    <option value="{{$stud->id}}">{{$stud->sections}}</option>
-                    @endforeach
 
-                </select>
-                @if($errors->has('section'))
-                <p class="alert alert-danger">{{$errors->first('section')}}</p>
-                @endif
+
+            <div class="form-group row">
+                <label for="religion" class="col-sm-4 col-form-label">Religion</label>
+                <div class="col-sm-6">
+                    <select class="form-control form-control-sm" name="religion" id="religion">
+                        <option value="" class="text-muted">Select</option>
+                        @foreach($stud_rel as $stud)
+                        <option value="{{$stud->id}}">{{$stud->religion}}</option>
+                        @endforeach
+                    </select>
+                    <a href="javascript:void(0)"  data-toggle="modal" data-target="#relModal" class="small float-right text-info" >Add Religion</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1" class="lbl col-4">Phone Number:</label>
-                <input type="text" class="form-control col-6" id="pho_no" name="pho_no" autocomplete="off">
-                @if($errors->has('pho_no'))
-                <p class="alert alert-danger">{{$errors->first('pho_no')}}</p>
-                @endif
+            <div class="form-group row">
+                <label for="caste" class="col-sm-4 col-form-label">Caste</label>
+                <div class="col-sm-6">
+                    <select class="form-control form-control-sm caste" name="caste" id="caste">
+                        <option value="" class="text-muted">Select</option>
+                        @foreach($stud_caste as $stud)
+                        <option value="{{$stud->id}}">{{$stud->caste}}</option>
+                        @endforeach
+                    </select>
+                    <a href="javascript:void(0)"  data-toggle="modal" data-target="#casteModal" class="small float-right text-info" >Add Caste</a>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="community" class="col-sm-4 col-form-label">Community</label>
+                <div class="col-sm-6">
+                    <select class="form-control form-control-sm comm" name="community" id="community">
+                        <option value="" class="text-muted">Select</option>
+                        @foreach($stud_com as $stud)
+                        <option value="{{$stud->id}}">{{$stud->comm}}</option>
+                        @endforeach
+                    </select>
+                    <a href="javascript:void(0)"  data-toggle="modal" data-target="#commModal" class="small float-right text-info" >Add Community</a>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="aadhar" class="col-sm-4 col-form-label">Aadhar</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-sm" id="aadhar"  name="aadhar" placeholder="Aadhar No." value="" autocomplete="off">
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div class="row">
 
+    </div>
+
+    <div class="row">
+        <input type="hidden" class="btn btn-primary" id="button_action" name="button_action" value="">
         <div class="form-group  btn-submit">
-            <button type="submit" class="btn btn-primary" id="saveBtn" name="submit">Save & continue</button>
+            <button type="submit" class="btn btn-primary" id="saveBtn" name="submit" value="">Save & continue</button>
         </div>
 
     </div>
 </form>
+
+@include('models.add_bloodGroup')
+@include('models.add_mtongue')
+@include('models.add_religion')
+@include('models.add_caste')
+@include('models.add_community')

@@ -36,34 +36,53 @@
                             <table class="table table-bordered data-table" id="student_tbl">
                                 <thead>
                                     <tr>
-                                        <th> Student Id </th>
+                                        <th> S NO </th>
                                         <th> First Name </th>
                                         <th> Last Name </th>
                                         <th> Gender </th>
-                                        <th> Class </th>
-                                        <th> Section </th>
-                                        <th> Mobile Number</th>
-
+                                        <th> DOB </th>
+                                        <th> Blood Group </th>
+                                        <th> Mother Tongue</th>
+                                        <th> Religion </th>
+                                        <th> Caste </th>
+                                        <th> Community</th>
+                                        <th> Aadhar No</th>
+                                        <th>Address</th>
                                         <th style="width: 20" colspan="2">Operations</th>
                                     </tr>
 
                                 </thead>
-                                <tbody id="">
-                                    @foreach($stud_data as $stud_info)
-                                    <tr id="user_id_{{ $stud_info->id }}">
-                                        <td>{{ $stud_info->id  }}</td>
-                                        <td>{{ $stud_info->first_name }}</td>
-                                        <td>{{ $stud_info->last_name }}</td>
-                                        <td>{{ $stud_info->gender }}</td>
-                                        <td>{{ $stud_info->class_id }}</td>
-                                        <td>{{ $stud_info->sec_id }}</td>
-                                        <td>{{ $stud_info->pho_no }}</td>
+
+                                <tbody id="">   
+
+                                    @foreach($address as $stud_info)
+
+                                    <tr>
+                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $stud_info->tbl_student->first_name }}</td>
+                                        <td>{{ $stud_info->tbl_student->last_name }}</td>
+                                        <td>{{ $stud_info->tbl_student->gender }}</td>
+                                        <td>{{ $stud_info->tbl_student->dob }}</td>
+                                        <td>{{ $stud_info->tbl_student->bgroupstudent->b_group }}</td>
+                                        <td>{{ $stud_info->tbl_student->mtngstudent->mtongue }}</td>
+                                        <td>{{ $stud_info->tbl_student->relstudent->religion }}</td>
+                                        <td>{{ $stud_info->tbl_student->castetudent->caste }}</td>
+                                        <td>{{ $stud_info->tbl_student->commstudent->comm }}</td>
+                                        <td>{{ $stud_info->tbl_student->aadar_no }}</td>
+
+                                        <td>{{$stud_info->building_no}},
+                                        {{$stud_info->building_name}},
+                                        {{$stud_info->street}},
+                                        {{$stud_info->area_student->area}},
+                                        {{$stud_info->road}}
+                                        </td>
                                         <td colspan="2">
-                                            <a href="javascript:void(0)" id="edit-user" data-id="{{ $stud_info->id }}" class="btn btn-info mr-2 edit-user">Edit</a>
-                                            <a href="javascript:void(0)" id="delete-user" data-id="{{ $stud_info->id }}" class="btn btn-danger delete-user">Delete</a>
+                                            <a href="javascript:void(0)" id="edit-user" data-id="{{ $stud_info->tbl_student->id }}" class="btn btn-info mr-2 edit-user" >Edit</a>
+                                            <a href="javascript:void(0)" id="delete-user" data-id="{{ $stud_info->tbl_student->id }}" class="btn btn-danger delete-user">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach
+
                                 </tbody>
 
                             </table>
@@ -79,6 +98,7 @@
         <!-- /.content -->
     </div>
 </div>
+
 
 @endsection
 

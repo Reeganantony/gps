@@ -1,8 +1,9 @@
 
 
 body{
-    background: url(/img/bus1.jpg)no-repeat center fixed;
-    background-size: cover;
+/*    background: url(/img/bus1.jpg)no-repeat center fixed;
+    background-size: cover;*/
+background-color: #b3afb3;
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -190,11 +191,11 @@ iframe {
 
 
 .wrap-login100 {
-  width: 560px;
+  width: 359px;
+  height: 397px;
   background: #fff;
-  border-radius: 10px;
-  position: relative;
   margin:0 auto;
+  margin-top: 100px;
 }
 
 
@@ -206,8 +207,8 @@ iframe {
 }
 
 .login100-form-title {
-  font-family: Raleway-Medium;
-  font-size: 30px;
+  
+  font-size: 22px;
   color: #555555;
   line-height: 1.2;
   text-transform: uppercase;
@@ -233,16 +234,16 @@ iframe {
 
 /*---------------------------------------------*/
 .input100 {
-  font-family: Raleway-Medium;
+  
   color: #555555;
   line-height: 1.2;
-  font-size: 18px;
+  
 
   display: block;
   width: 100%;
   background: transparent;
-  height: 55px;
-  padding: 0 25px 0 25px;
+  height: 50px;
+  
 }
 /*------------------------------------------------------------------
 [ Focus Input ]*/
@@ -382,6 +383,7 @@ iframe {
 [ Button ]*/
 .container-login100-form-btn {
   width: 100%;
+  margin-top: -20px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;

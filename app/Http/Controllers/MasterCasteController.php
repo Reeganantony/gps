@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\master_sections;
+use App\master_caste;
 use Illuminate\Http\Request;
 
-class MasterSectionsController extends Controller
+class MasterCasteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,8 +25,6 @@ class MasterSectionsController extends Controller
     public function create()
     {
         //
-        $stud_sec = master_sections::all();
-        return view('student.create',  compact('stud_sec'));
     }
 
     /**
@@ -37,16 +35,19 @@ class MasterSectionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $caste = new master_caste();
+        $caste->caste = request('caste');
+        $caste->save();
+        return response()->json(['success' => 'Caste saved successfully.']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\master_sections  $master_sections
+     * @param  \App\master_caste  $master_caste
      * @return \Illuminate\Http\Response
      */
-    public function show(master_sections $master_sections)
+    public function show(master_caste $master_caste)
     {
         //
     }
@@ -54,10 +55,10 @@ class MasterSectionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\master_sections  $master_sections
+     * @param  \App\master_caste  $master_caste
      * @return \Illuminate\Http\Response
      */
-    public function edit(master_sections $master_sections)
+    public function edit(master_caste $master_caste)
     {
         //
     }
@@ -66,10 +67,10 @@ class MasterSectionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\master_sections  $master_sections
+     * @param  \App\master_caste  $master_caste
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, master_sections $master_sections)
+    public function update(Request $request, master_caste $master_caste)
     {
         //
     }
@@ -77,10 +78,10 @@ class MasterSectionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\master_sections  $master_sections
+     * @param  \App\master_caste  $master_caste
      * @return \Illuminate\Http\Response
      */
-    public function destroy(master_sections $master_sections)
+    public function destroy(master_caste $master_caste)
     {
         //
     }

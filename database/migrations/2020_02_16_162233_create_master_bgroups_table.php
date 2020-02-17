@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMasterStandardsTable extends Migration
+class CreateMasterBgroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateMasterStandardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_standards', function (Blueprint $table) {
+        Schema::create('master_bgroups', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('standard');
+            $table->string('b_group');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateMasterStandardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_standards');
+        Schema::dropIfExists('master_bgroups');
     }
 }

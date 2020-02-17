@@ -10,7 +10,10 @@ class master_address extends Model {
     protected $guarded = [];
 
     public function tbl_student() {
-        return $this->belongsTo('App\master_students', 'id');
+        return $this->belongsTo('App\master_student', 'student_id');
+    }
+    public function area_student() {
+        return $this->belongsTo('App\master_area', 'area');
     }
 
 }

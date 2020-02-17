@@ -30,7 +30,7 @@ class CreateMasterAddressesTable extends Migration
             $table->unsignedBigInteger('pin_code');
             $table->foreign('pin_code')->references('id')->on('master_pincodes');
             $table->unsignedBigInteger('student_id');
-            $table->foreign('student_id')->references('id')->on('master_students');
+            $table->foreign('student_id')->references('id')->on('master_students')->onDelete('cascade');
             $table->timestamps();
         });
     }

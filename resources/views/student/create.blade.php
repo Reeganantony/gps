@@ -1,3 +1,4 @@
+use App\master_bgroup;
 @extends('layout')
 
 @section('head')
@@ -82,9 +83,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
-
                                 </tbody>
-
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -101,4 +100,5 @@
 
 
 @endsection
+
 
